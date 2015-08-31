@@ -29,6 +29,10 @@ if ( ! class_exists( 'CoopMediaLink' )) :
 			else {
 				add_action( 'enqueue_scripts', array( &$this, 'frontside_enqueue_styles_scripts' ));
 			}
+
+			//default options if not already set
+			add_option ($this->slug . '-label-text', 'Download Digital Media', '', 'yes');
+			add_option ($this->slug . '-uri', '', '/research/download-digital-media', 'yes');
 		
 		}
 	
