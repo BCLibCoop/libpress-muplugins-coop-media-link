@@ -32,7 +32,7 @@ if ( ! class_exists( 'CoopMediaLink' )) :
 
 			//default options if not already set
 			add_option ($this->slug . '-label-text', 'Download Digital Media', '', 'yes');
-			add_option ($this->slug . '-uri', '', '/research/download-digital-media', 'yes');
+			add_option ($this->slug . '-uri', '/research/download-digital-media', '', 'yes');
 		
 		}
 	
