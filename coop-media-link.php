@@ -12,7 +12,7 @@ if ( ! class_exists( 'CoopMediaLink' )) :
 
 	class CoopMediaLink {
 
-		var $slug = 'coop-media-link';
+		var $slug = 'coop-media-links';
 
 		public function __construct() {
 	
