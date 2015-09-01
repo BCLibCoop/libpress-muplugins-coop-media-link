@@ -24,7 +24,7 @@ if ( ! class_exists( 'CoopMediaLink' )) :
 			if( is_admin()) {
 				add_action( 'admin_enqueue_scripts', array( &$this, 'admin_enqueue_styles_scripts' ));
 				add_action( 'admin_menu', array( &$this,'add_media_link_menu' ));
-				add_action( 'wp_ajax_'.$this->slug.'-save-change', array( &$this, 'coop_media_link_save_change_callback'));
+				add_action( 'wp_ajax_'.$this->slug.'-save-change', array( &$this, 'coop_media_links_save_change_callback'));
 			}
 			else {
 				add_action( 'enqueue_scripts', array( &$this, 'frontside_enqueue_styles_scripts' ));
@@ -51,7 +51,7 @@ if ( ! class_exists( 'CoopMediaLink' )) :
 			add_submenu_page( 'site-manager', 'Co-op Media Link', 'Media Link', 'manage_local_site', $this->slug, array(&$this,'admin_media_link_settings_page'));
 		}
 
-		public function coop_media_link_save_change_callback() {
+		public function coop_media_links_save_change_callback() {
 		
 			$link_text = sanitize_text_field($_POST[$this->slug.'-label-text']);
 			$link_uri = sanitize_text_field($_POST[$this->slug.'-uri']);	
