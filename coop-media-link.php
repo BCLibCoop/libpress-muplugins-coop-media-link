@@ -32,7 +32,7 @@
 
 namespace BCLibCoop;
 
-use function \pll_languages_list;
+use function pll_languages_list;
 
 class CoopMediaLink
 {
@@ -73,8 +73,13 @@ class CoopMediaLink
 
         // Set default options if not already set
         foreach ($this->languages as $curlang) {
-            add_option($this->slug . $curlang->locale . '-label-text', 'Download Digital Media', '', 'yes');
-            add_option($this->slug . $curlang->locale . '-uri', '/research/download-digital-media', '', 'yes');
+            /**
+             * When langyages are present, this does generate an option in the format:
+             * coop-media-linksen_CA-label-text, which is maybe not the nicest, but is
+             * kept for backwards compatibility
+             */
+            add_option($this->slug . $curlang->locale . '-label-text', 'Download Digital Media');
+            add_option($this->slug . $curlang->locale . '-uri', '/research/download-digital-media');
         }
 
         add_shortcode('coop-media-link', [&$this, 'coopMediaLinkShortcode']);
@@ -95,8 +100,9 @@ class CoopMediaLink
     public function coopMediaLinkSaveChangeCallback()
     {
         // Check the nonce field, if it doesn't verify report error and stop
-        if (!isset($_POST['coop_media_link_nonce'])
-            || !wp_verify_nonce($_POST['coop_media_link_nonce'], 'coop_media_link_submit')
+        if (
+            ! isset($_POST['coop_media_link_nonce'])
+            || ! wp_verify_nonce($_POST['coop_media_link_nonce'], 'coop_media_link_submit')
         ) {
             wp_die('Sorry, there was an error handling your form submission.');
         }
@@ -143,7 +149,8 @@ class CoopMediaLink
             $out[] = '<label for="' . $prefix . '-uri">' . $curlang->name . ' Media Link URI:</label>';
             $out[] = '</th>';
             $out[] = '<td>';
-            $out[] = '<input type="text" id="'.$prefix.'-uri" name="'.$prefix.'-uri"  value="'.$link_uri.'">';
+            $out[] = '<input type="text" id="' . $prefix . '-uri" name="' . $prefix . '-uri"  value="'
+                     . $link_uri . '">';
             $out[] = '</td>';
             $out[] = '</tr>';
 
@@ -152,8 +159,8 @@ class CoopMediaLink
             $out[] = '<label for="' . $prefix . '-label-text">' . $curlang->name . ' Media Link Label:</label>';
             $out[] = '</th>';
             $out[] = '<td>';
-            $out[] = '<input type="text" id="'.$prefix.'-label-text" name="'.$prefix.'-label-text"  value="'
-                     . $link_text.'">';
+            $out[] = '<input type="text" id="' . $prefix . '-label-text" name="' . $prefix . '-label-text"  value="'
+                     . $link_text . '">';
             $out[] = '</td>';
             $out[] = '</tr>';
         }
