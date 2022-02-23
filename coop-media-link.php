@@ -19,7 +19,7 @@
  * @wordpress-plugin
  * Plugin Name:       Coop Media Link
  * Description:       Options to allow libraries to customize their digital media link in searchform
- * Version:           1.0.0
+ * Version:           1.0.2
  * Network:           true
  * Requires at least: 5.2
  * Requires PHP:      7.0
@@ -132,10 +132,9 @@ class CoopMediaLink
         $out = [];
         $out[] = '<div class="wrap">';
 
-        $out[] = '<div id="icon-options-general" class="icon32">';
-        $out[] = '<br>';
-        $out[] = '</div>';
-        $out[] = '<h2>Media Link</h2>';
+        $out[] = '<h1 class="wp-heading-inline">Media Link</h1>';
+        $out[] = '<hr class="wp-header-end">';
+
         $out[] = '<form action="' . esc_url(admin_url('admin-post.php')) . '" method="post">';
         $out[] = '<table class="form-table">';
 
