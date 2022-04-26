@@ -19,7 +19,7 @@
  * @wordpress-plugin
  * Plugin Name:       Coop Media Link
  * Description:       Options to allow libraries to customize their digital media link in searchform
- * Version:           1.0.2
+ * Version:           1.0.3
  * Network:           true
  * Requires at least: 5.2
  * Requires PHP:      7.0
@@ -30,7 +30,7 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-namespace BCLibCoop;
+namespace BCLibCoop\CoopMediaLink;
 
 use function pll_languages_list;
 
